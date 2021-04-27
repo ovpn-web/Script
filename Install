@@ -67,28 +67,28 @@ if [[ -e /usr/local/bin/Check-Thai ]]; then
 		echo -e "|${GRAY} 1${NC}| ដំឡើង OPENVPN ដែលគ្រប់គ្រងការប្រើប្រាស់តាមប្រព័ន្ធ Terminal ${GRAY} ✔   ${NC}"
 	fi
 	echo -e "|${GRAY} 2${NC}| ដំឡើង OPENVPN ដែលគ្រប់គ្រងការប្រើប្រាស់តាមប្រព័ន្ធ PRITUNL ${GRAY} ✔   ${NC}"
-	echo -e "|${GRAY} 3${NC}| ដំឡើង SSH DROPBEAR ${GRAY} ✔   ${NC}"
-	echo -e "|${GRAY} 4${NC}| ដំឡើង WEB PANEL ${GRAY} ✖   ${NC}"
+	echo -e "|${GRAY} 3${NC}| ដំឡើង SSH DROPBEAR ${GREEN} ✔   ${NC}"
+	echo -e "|${GRAY} 4${NC}| ដំឡើង WEB PANEL ${GREEN} ✖   ${NC}"
 	if [[ "$VERSION_ID" = 'VERSION_ID="7"' || "$VERSION_ID" = 'VERSION_ID="8"' || "$VERSION_ID" = 'VERSION_ID="14.04"' ]]; then
 		if [[ ! -e /etc/squid3/squid.conf ]]; then
-			echo -e "|${GRAY} 5${NC}| ដំឡើង SQUID PROXY ${GRAY} ✔   ${NC}"
+			echo -e "|${GRAY} 5${NC}| ដំឡើង SQUID PROXY ${GREEN} ✔   ${NC}"
 		elif [[ -e /etc/squid3/squid.conf ]]; then
-			echo -e "|${GRAY} 5${NC}| លុបការដំឡើង SQUID PROXY ${GRAY} ✔   ${NC}"
+			echo -e "|${GRAY} 5${NC}| លុបការដំឡើង SQUID PROXY ${GREEN} ✔   ${NC}"
 		fi
 
 	elif [[ "$VERSION_ID" = 'VERSION_ID="9"' || "$VERSION_ID" = 'VERSION_ID="16.04"' || "$VERSION_ID" = 'VERSION_ID="17.04"' ]]; then
 		if [[ ! -e /etc/squid/squid.conf ]]; then
-			echo -e "|${GRAY} 5${NC}| ติดตั้ง SQUID PROXY ${GREEN} ✔   ${NC}"
+			echo -e "|${GRAY} 5${NC}| ដំឡើង SQUID PROXY ${GREEN} ✔   ${NC}"
 		elif [[ -e /etc/squid/squid.conf ]]; then
-			echo -e "|${GRAY} 5${NC}| ถอนการติดตั้ง SQUID PROXY ${GREEN} ✔   ${NC}"
+			echo -e "|${GRAY} 5${NC}| លុបការដំឡើង SQUID PROXY ${GREEN} ✔   ${NC}"
 		fi
 	fi
 	echo ""
-	echo -e "|${GRAY} 0${NC}| อัพเดตฟังก์ชั่นสคริปท์"
-	echo -e "|${GRAY}00${NC}| เปลี่ยนเป็นภาษาอังกฤษ"
+	echo -e "|${GRAY} 0${NC}| ធ្វើបច្ចុប្បន្នភាព មេនុយស្រ្គីប"
+	echo -e "|${GRAY}00${NC}| ផ្លាស់ប្តូរភាសាអង់គ្លេស"
 	echo ""
 	echo ""
-	read -p "เลือกหัวข้อฟังก์ชั่นที่ต้องการใช้งาน : " FUNCTIONSCRIPT
+	read -p "ជ្រើសរើសពាក្យបញ្ជាដែលអ្នកត្រូវការប្រើប្រាស់ : " FUNCTIONSCRIPT
 
 elif [[ ! -e /usr/local/bin/Check-Thai ]]; then
 	echo -e "FUNCTION SCRIPT ${GRAY} ${NC}"
@@ -117,7 +117,7 @@ elif [[ ! -e /usr/local/bin/Check-Thai ]]; then
 	fi
 	echo ""
 	echo -e "|${GRAY} 0${NC}| UPDATE FUNCTION SCRIPT"
-	echo -e "|${GRAY}00${NC}| เปลี่ยนเป็นภาษาไทย"
+	echo -e "|${GRAY}00${NC}| ផ្លាស់ប្តូរភាសាខ្មែរ"
 	echo ""
 	echo ""
 	read -p "Select a Function Script : " FUNCTIONSCRIPT
@@ -145,7 +145,7 @@ newclient () {
 
 if [[ -e /etc/openvpn/server.conf ]]; then
 	echo ""
-	read -p "ต้องการถอนการติดตั้ง OpenVPN หรือไม่  (Y or N): " -e -i N REMOVE
+	read -p "អ្នកត្រូវការលុបការដំឡើង OpenVPN ចាស់ដែលមានរួចហើយក្នុង SERVER មែនរឺទេ? (Y or N): " -e -i N REMOVE
 
 	if [[ "$REMOVE" = 'Y' ]]; then
 		PORT=$(grep '^port ' /etc/openvpn/server.conf | cut -d " " -f 2)
@@ -184,7 +184,7 @@ if [[ -e /etc/openvpn/server.conf ]]; then
 		rm -rf /etc/openvpn
 		rm -rf /usr/local/bin/*
 		echo ""
-		read -p "ต้องการลบข้อมูลบัญชีทั้งหมดหรือไม่ (Y or N) : " -e -i N DELETEACCOUNT
+		read -p "អ្នកត្រូវការលុបពត៍មានទាំងអស់ដែលមាននៅក្នុង SERVER មែនរឺទេ? (Y or N) : " -e -i N DELETEACCOUNT
 		if [[ "$DELETEACCOUNT" = "Y" ]]; then
 			UIDN=1000
 			while read CHECKCLIENT
